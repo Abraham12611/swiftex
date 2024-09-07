@@ -1,0 +1,62 @@
+.how-it-works-section {
+    background-color: #121212;
+    color: #F5F5F5;
+    padding: 48px 0;
+    text-align: center;
+  }
+  
+  .section-heading {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    flex-direction: column;
+  }
+  
+  .steps {
+    /*width: 60%;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step {
+    margin-bottom: 32px;
+    max-width: 600px; 
+  }
+  
+  .icon-container {
+    margin-bottom: 16px;
+  }
+  
+  .icon {
+    font-size: 48px;
+    color: #14FFEC; /* Adjust color as needed */
+  }
+  
+  .step-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #F5F5F5;
+    margin-bottom: 8px;
+  }
+  
+  .step-description {
+    font-size: 16px;
+    color: #CCCCCC;
+  }
+  
+  .visuals {
+    /*width: 35%;*/
+    margin-top: 32px;
+  }
+  
+
+  
