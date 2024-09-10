@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
   const Header = () => {
     const navigate = useNavigate();
@@ -6,7 +7,7 @@ import React from 'react';
   const handleSignUp = () => {
     navigate('/signup');  // This navigates to the signup page
   };
-  
+
   return (
     <header className="fixed top-0 left-0 w-full bg-[#121212] shadow-md z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
