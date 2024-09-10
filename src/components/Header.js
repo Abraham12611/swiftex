@@ -1,6 +1,29 @@
 import React from 'react';
+/* Import Web5 SDK
+import { Web5 } from '@tbd54566975/web5';
 
-const Header = () => {
+
+  // Function to handle DID Sign-Up process
+  const handleSignUp = async () => {
+    try {
+      // Initialize Web5 SDK
+      const web5 = new Web5();
+      
+      // Create a new DID
+      const { did } = await web5.did.create();
+      
+      // Store DID in localStorage (or sessionStorage if needed)
+      localStorage.setItem('userDID', did);
+      
+      // Trigger verification process (depends on your logic)
+      alert('DID created and stored! Proceed with verification.');
+      
+    } catch (error) {
+      console.error('Error creating DID:', error);
+      alert('Failed to create DID. Please try again.');
+    }
+  };*/
+  const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full bg-[#121212] shadow-md z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
@@ -25,12 +48,12 @@ const Header = () => {
 
         {/* Call to Action (CTA) Button */}
         <div className="cta hidden md:block">
-          <a
-            href="#signup"
+          <button
+            onClick={handleSignUp}
             className="bg-[#0D7377] text-white font-bold py-2 px-6 rounded-md hover:bg-[#14FFEC] transform hover:scale-105 transition-all duration-300"
           >
             Get Started
-          </a>
+          </button>
         </div>
 
         {/* Mobile Hamburger Menu */}
