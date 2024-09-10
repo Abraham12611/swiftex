@@ -1,9 +1,13 @@
-import { DidResolver, DID } from '@tbd54566975/web5'; // Ensure tbDEX SDK is properly installed
+import { Web5 } from '@tbd54566975/web5';
+
+// Initialize Web5 instance
+const web5 = new Web5();
 
 export const createDID = async () => {
   try {
-    const newDID = await DID.create(); // Generate a new DID using tbDEX SDK
-    return newDID.did;
+    // Generate a new DID
+    const { did } = await web5.did.create();
+    return did;
   } catch (error) {
     throw new Error('DID creation failed');
   }
@@ -11,8 +15,8 @@ export const createDID = async () => {
 
 export const requestVC = async (did) => {
   try {
-    // Implement the logic to request a Verifiable Credential (VC) based on the DID
-    const vcResponse = await DidResolver.issueVC(did); // Adjust this according to tbDEX's VC issuance API
+    // Logic to request Verifiable Credential (VC)
+    const vcResponse = await web5.vc.issue({ subject: did });
     return vcResponse;
   } catch (error) {
     throw new Error('VC issuance failed');
