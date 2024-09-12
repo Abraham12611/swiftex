@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { createDID, requestVC } from '../services/didService'; // service functions for tbDEX interaction
+import { createDID, requestVC } from '../services/didService';
 
 const SignUp = () => {
   const [did, setDid] = useState(null);
   const [loading, setLoading] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState('');
-  const [name, setName] = useState(''); // State to collect user's name
+  const [name, setName] = useState('');
 
   const handleSignUp = async () => {
     if (!name) {
@@ -15,15 +15,14 @@ const SignUp = () => {
 
     setLoading(true);
     try {
-      const newDID = await createDID(); // Call tbDEX to create a DID
-      console.log('DID Created:', newDID);  // Debugging output
+      const newDID = await createDID();
+      console.log('DID Created:', newDID);
       setDid(newDID);
 
-      const verification = await requestVC(newDID, name); // Pass the user's name to request VC
-      console.log('VC Verification:', verification);  // Debugging output
-      setVerificationStatus(verification.status); // Check if VC was successfully issued
+      const verification = await requestVC(newDID, name);
+      console.log('VC Verification:', verification);
+      setVerificationStatus(verification.status);
 
-      // After successful verification
       if (verification.status === 'verified') {
         localStorage.setItem('did', newDID);
         localStorage.setItem('vc', JSON.stringify(verification));
@@ -39,11 +38,11 @@ const SignUp = () => {
   return (
     <div className="signup-container">
       <h2>Sign Up for SwiftEx</h2>
-      <input 
-        type="text" 
-        placeholder="Enter your name" 
-        value={name} 
-        onChange={(e) => setName(e.target.value)} 
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       {did ? (
         <div>

@@ -7,11 +7,11 @@ const { web5 } = await Web5.connect();
 // Create a DID for the user
 export const createDID = async () => {
   try {
-    // Generate a new DID
-    const { did } = await web5.did.create();
-    console.log('Generated DID:', did);  // Debugging output
+    const { did } = await web5.did.create(); // Generate a new DID
+    console.log('Generated DID:', did);
     return did;
   } catch (error) {
+    console.error('DID creation failed:', error);
     throw new Error('DID creation failed: ' + error.message);
   }
 };
@@ -25,7 +25,7 @@ export const requestVC = async (did, name) => {
       issuer: did,
       subject: did,
       data: {
-        name: name,  // Use the name collected from the user
+        name,  // Use the name collected from the user
         completionDate: new Date().toISOString(),
         expertiseLevel: 'Beginner'
       }
@@ -36,7 +36,7 @@ export const requestVC = async (did, name) => {
 
     // Sign the VC
     const signedVc = await vc.sign({ did: bearerDid });
-    console.log('Signed VC:', signedVc);  // Debugging output
+    console.log('Signed VC:', signedVc);
 
     // Store VC in DWN (Decentralized Web Node)
     const { record } = await web5.dwn.records.create({
@@ -51,13 +51,13 @@ export const requestVC = async (did, name) => {
     // Read the signed VC from DWN
     const readSignedVc = await record.data.text();
 
-    // Parse VC
+    // Parse the VC
     const parsedVc = VerifiableCredential.parseJwt({ vcJwt: readSignedVc });
-    console.log('Parsed VC:', parsedVc);  // Debugging output
+    console.log('Parsed VC:', parsedVc);
 
-    // Return the parsed VC as the verification response
-    return { status: 'verified', vc: parsedVc };
+    return { status: 'verified', vc: parsedVc }; // Return parsed VC as the verification response
   } catch (error) {
+    console.error('VC issuance failed:', error);
     throw new Error('VC issuance failed: ' + error.message);
   }
 };
