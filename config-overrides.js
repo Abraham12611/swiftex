@@ -1,23 +1,21 @@
+const { override } = require('customize-cra');
 const webpack = require('webpack');
 
-module.exports = function override(config, env) {
+module.exports = override((config) => {
   config.resolve.fallback = {
-    ...config.resolve.fallback,
     "crypto": require.resolve("crypto-browserify"),
-    "url": require.resolve("url"),
     "stream": require.resolve("stream-browserify"),
+    "url": require.resolve("url"),
     "vm": require.resolve("vm-browserify"),
-    "process": require.resolve("process/browser") // Ensure this line is here
+    "process": require.resolve("process/browser")
   };
-
-  config.resolve.extensions = [...config.resolve.extensions, '.js', '.jsx', '.json', '.mjs']; // Add .mjs extension
-
-  config.plugins = (config.plugins || []).concat([
+  
+  config.plugins.push(
     new webpack.ProvidePlugin({
       process: 'process/browser',
       Buffer: ['buffer', 'Buffer']
     })
-  ]);
+  );
 
   return config;
-};
+});
